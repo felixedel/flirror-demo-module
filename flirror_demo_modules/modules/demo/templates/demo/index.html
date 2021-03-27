@@ -1,0 +1,20 @@
+{# Extending from module.html will ensure that the module's view is seamlessly
+   included in the flirror UI #}
+{% extends "module.html" %}
+
+{% block body %}
+<div class="card-body">
+    <div class="text-right">
+        <small>
+            {# If the module's crawler provides an appropriate crawling timestamp
+               like in the example, it's a nice way to show the time since the
+               last crawl/update. In case your module is not using any crawler,
+               you might just remove this part. #}
+            <i id="{{ module.id }}-spinner" class="fas fa-sync-alt"></i> {{ module.data._timestamp | prettydate }}
+        </small>
+    </div>
+    {# Here you can visualize your module's data - in our case we just display
+       the configured message #}
+    <h2>{{ module.data.message }}</h2>
+</div>
+{% endblock %}
